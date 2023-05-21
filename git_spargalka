@@ -1,0 +1,226 @@
+## GIT команды
+
+Проверьте имя пользователя
+git config user.name
+
+Установить имя пользователя
+git config user.name "your_name"
+
+Проверьте свою электронную почту
+git config user.email
+
+Установите / измените адрес электронной почты
+git config user.email "your@email.com"
+Список / просмотреть все настройки
+git config --list для выхода затем нажать ‘q’
+
+Git init - Создание репозитория в той папке в которой находитесь
+
+1 Git status - посмотреть состояние которые готовы к сохранению в репозиторий
+
+2 Git add имя файла - добавляет файл в индекс
+Git add .  Добавляет все изменения в индекс
+
+Git commit - cохранение текущей версии проекта в репозиторий из индекса
+Git commit - m 'Added block students'
+
+Git log - история изменений
+
+Git cat-file -p участок хеша - прочитает содержимое файла
+
+Git checkout commit hash переход к опрденой версии проекта берет из репозитория и перемещает их в рабочую директорию
+
+Git checkout branch name
+
+rm -rf .git удалить .git из рабочей папки
+
+___
+
+## НОВЫЙ РЕПОЗИТОРИЙ
+
+git init
+git add . / или имя файла
+git commit -m «Комит изменения»
+
+___
+
+git remote add origin https://github.com/amputators115/testgit.git
+
+Вод имя пользователя и токене
+git push -u origin main
+
+## СКАЧАТЬ С РЕПОЗИТОРИЯ
+
+Git clone ссылка репозитория
+GIT PULL скачиваем все изменения С ЭТОГО НАЧИНАЕТСЯ РАБОТА!
+Git Push - отправка на репозитоиий
+
+
+### Основные команды
+
+git clone ссылка_на_репозиторий //чтобы скачать все файлы в текущую папку (в консоле)
+git clone ссылка_на_репозиторий название_папки //свое название папки
+git status //выводит все файлы в папке
+git add имя_файла //чтобы добавить файл
+git commit -m "Add index.html" //указать какие изменения были произведены
+git push //залить все файлы на облако (после коммита)
+git pull //скачать все файлы которых не хватает
+git add -A //подтвердить все файлы или git add .
+git commit -m "Made some changes" //сделал некие изменения
+git //информация по командам
+
+
+### Загрузить локальный репозиторий на онлайн репозитори github
+git init
+git add your_file
+git commit -m "first commit"
+git remote add origin https://github.com/you_repository/you_project
+git push -u origin master
+
+
+### Отмена изменения в стейдже до команды add
+
+git checkout -- index.html //один файл
+git checkout -- . //все файлы
+
+### Отменить изменение в индексе после команды add (вернуть в стейдж)
+
+git reset index.html //один файл
+git reset . //все файлы
+
+### Отменить изменения после команды commit
+
+git reset --soft HEAD^1 //сбросить на 1 комминт назад и сохранить все изменнеия локально
+git reset --hard HEAD^1 //сброситься и удалить все изменения
+git log -5 //посмотреть последние пять коммитов
+
+### ВЕТКИ
+
+git branch //посмотреть ветки, со звездочкой - текущая
+git branch -v //посмотреть ветки, и последние коммиты в них
+git branch название_новой_ветки //создать ветку
+git checkout название_ветки //переключиться на другую ветку
+git checkout -b fix_about //Создать ветку и перейти к ней
+git push --set-upstream origin название_ветки //залить на github в нужную ветку
+git branch -m new_some_branch //переименовать текущую ветку
+git checkout номер_коммита //перейти к нужному коммиту
+git checkout -b название_ветки //создать ветку с выбранного ранее коммита
+git branch -D название ветки // удаление ветки
+
+### Объединение веток
+
+git checkout master //перейти на ветку master
+git merge название_ветки //объединить ветки
+git branch --merged //посмотреть все объединенные ветки
+git branch --no-merged //посмотреть все не объединенные ветки
+git branch -d название_ветки //удалить ветку или -D чтобы удалить не смерженую ветку
+
+### Отмена слияния веток
+
+git revert код_коммита //вернуться к коммиту
+git revert код_коммита1^..код_коммита2 //отменить диапазон коммитов
+git revert -m 1 коммит_мерджа
+
+### Перенос коммита в другую ветку
+
+git checkout название_ветки //Перейти туда куда будем вставлять изменения
+git cherry-pick код_коммита1 код_коммита2 //Добаляем нужный коммит в текущую ветку (через пробел)
+Можно создать новую ветку с текущего места, а в ветке master удалить один коммит
+
+
+### Скрыть изменения
+
+git stash //если есть измененные файлы и надо перейти на другую ветку
+git stash list //показать что скрыто
+git stash apply //востановить последний стэш (останется в списке стэшей)
+/не работает/git stash pop stash@{номер_стэша}//востановить последний стэш и убрать его из списка
+/не работает/git stash drop stash@{номер_стэша}//удалить указанный стэш
+git stash clear //удалить все записи стэша
+
+### Добавить ветку в конец другой
+
+git rebase имя_ветки
+git rebase --onto имя_ветки_куда имя_ветки_начала имя_ветки_куда
+git rebase --continue
+git rebase -i HEAD~6 //интерактивный ребэйс на 6 коммитов
+
+### Доп. команды
+
+git rm //посмотреть файлы
+git rm имя_файла //удалить нужынй файл
+git mv имя_файла имя_каталога/имя_файла //переместить файл в каталог 
+git add *.txt //добавить все файлы txt
+git show код_коммита //посомтреть изменения в коммите
+git add любые_символы*.txt //добавить все файлы любые_символы.txt
+
+
+### Команды pull, fetch, merge
+
+git push origin HEAD
+git pull = git fetch + git merge //
+git fetch origin // имя папки вместо origin
+git merge origin/master //объединить ветки
+
+АЛИАСЫ
+
+.gitconfig
+
+s = status --short
+	l = log --oneline --graph --decorate --all
+	g = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
+	br = branch
+	co = checkout
+
+### GIST
+
+↑   Shift + ⌘ Cmd + P then F1
+
+И ввести операцию из подсказки >gist
+
+___
+
+Шпаргалка по командам Git на русском - 2
+
+echo "# название" >> README.md - создание файла README.md
+git init - инициализация репозитория
+git add README.md - добавления файла README.md в проект
+git commit -m "first commit" - получает проиндексированный снимок состояния и выполняет его коммит в историю проекта
+git remote add origin https://github.com/stanruss/название.git - команда, которой устанавливается подключение к удаленному серверу и git репозиторию, размещающемуся на нем.
+git push -u origin master - кзменения отправляются на удаленный сервер
+
+git log --oneline - посмотреть все коммиты.
+git checkout . - восстановить все.
+git checkout "код коммита" - вернуть до состояния этого коммита.
+git checkout master - вернуться в ветку мастер.
+
+Восстановить файлы на локальном компьютере:
+git fetch --all
+git reset --hard origin/master или git reset --hard origin/<название_ветки>
+
+git add text.txt - Добавить файл в репозиторий
+git rm text.txt - Удалить файл
+git status - Текущее состояние репозитория (изменения, неразрешенные конфликты и тп)
+git commit -a -m "Commit description" - Сделать коммит
+git push origin - Замерджить все ветки локального репозитория на удаленный репозиторий 
+git push origin master - Аналогично предыдущему, но делается пуш только ветки master
+git push origin HEAD - Запушить текущую ветку, не вводя целиком ее название
+git pull origin - Замерджить все ветки с удаленного репозитория
+git pull origin master - Аналогично предыдущему, но накатывается только ветка master
+git pull origin HEAD - Накатить текущую ветку, не вводя ее длинное имя
+git fetch origin - Скачать все ветки с origin, но не мерджить их в локальный репозиторий
+git fetch origin master - Аналогично предыдущему, но только для одной заданной ветки
+git checkout -b some_branch origin/some_branch - Начать работать с веткой some_branch (уже существующей)
+git branch some_branch - Создать новый бранч (ответвится от текущего)
+git checkout some_branch - Переключиться на другую ветку (из тех, с которыми уже работаем)
+git branch # звездочкой отмечена текущая ветвь - Получаем список веток, с которыми работаем
+git branch -a # | grep something - Просмотреть все существующие ветви
+git merge some_branch - Замерджить some_branch в текущую ветку
+git branch -d some_branch - Удалить бранч (после мерджа)
+git branch -D some_branch - Просто удалить бранч (тупиковая ветвь)
+git show d8578edf8458ce06fbc5bb76a58c5ca4a58c5ca4 - Изменения, сделанные в заданном коммите
+git push origin :branch-name - Удалить бранч из репозитория на сервере
+git reset --hard d8578edf8458ce06fbc5bb76a58c5ca4a58c5ca4 - Откатиться к конкретному коммиту и удалить последующие (хэш смотрим в «git log»)
+git push -f - залить на сервер измененные коммиты
+git clean -f - Удаление untracked files
+
+_____
